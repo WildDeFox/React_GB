@@ -1,7 +1,7 @@
 import style from './Message.module.css'
 
-export const Message = (props) => {
+export const Message = ({text}) => {
   return <>
-    <h1 className={style.message}>{props.text}</h1>
+    <h1 className={style.message}>{text}</h1>
   </>
 }
