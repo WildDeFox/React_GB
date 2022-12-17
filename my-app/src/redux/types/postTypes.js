@@ -1,0 +1,6 @@
+export const SET_ALL_POSTS = 'SET_ALL_POSTS'
+export const SET_POST = 'SET_POST'
+export const ADD_LIKE = 'ADD_LIKE'
+export const REMOVE_POST = 'REMOVE_POST'
+export const POST_CLEAR_INPUTS = 'POST_CLEAR_INPUTS'
+export const POST_TYPING = 'POST_TYPING'
