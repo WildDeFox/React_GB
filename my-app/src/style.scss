@@ -1,0 +1,9 @@
+.App {
+  background-color: red;
+  &_header {
+    background-color: green;
+    &--top {
+      font-size: 20px;
+    }
+  }
+}
