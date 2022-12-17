@@ -9,7 +9,7 @@ import storage from 'redux-persist/lib/storage'
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['postInputs', 'profile', 'articles']
+  blacklist: ['postInputs', 'profile']
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

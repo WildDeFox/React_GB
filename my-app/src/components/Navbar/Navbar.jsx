@@ -1,12 +1,12 @@
 import React from 'react'
-import { Link, useNavigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 import { logOut } from '../../services/firebase'
 
 export default function Navbar() {
   const navigate = useNavigate()
 
-  const handleLogout = async () => {
+  const hendleLogout = async () => {
     await logOut()
     navigate('/signin')
   }
@@ -23,7 +23,7 @@ export default function Navbar() {
     <div className='btn-group mt-3'>
       <Link to="/signin" className="btn btn-dark">Signin</Link>
       <Link to="/signup" className="btn btn-dark">Signup</Link>
-      <a className="btn btn-dark" onClick={handleLogout}>Logout</a>
+      <a className="btn btn-dark" onClick={hendleLogout}>Logout</a>
     </div>
     </>
   )

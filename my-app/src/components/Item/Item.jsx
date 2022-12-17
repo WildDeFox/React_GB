@@ -3,20 +3,21 @@ import { Link } from "react-router-dom"
 import { useDispatch } from 'react-redux'
 import { set, push, remove } from "firebase/database";
 
-import { getPostById } from '../../services/firebase'
+import {  getPostById } from '../../services/firebase'
 
 import * as postActions from '../../redux/actions/postAC'
 
 export default function Item({item}) {
   console.log('Item')
   const dispatch = useDispatch();
-  const handlerDelete = (myId) => {
+  const handlerDelete = (id) => {
+    console.log('id', id)
+    remove(getPostById(id))
     // dispatch(postActions.removePost({myId}))
-    remove(getPostById(myId))
   }
 
   const addLike = (myId) => {
-    dispatch(postActions.addLikePost({myId}))
+      dispatch(postActions.addLikePost({myId}))
   }
 
   return (

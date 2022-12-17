@@ -1,38 +1,37 @@
 import { initializeApp } from "firebase/app";
-import { 
-  getAuth, 
-  createUserWithEmailAndPassword, 
-  signInWithEmailAndPassword, 
-  signOut 
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut
 } from "firebase/auth";
-
-import { getDatabase, ref } from 'firebase/database'
+import { getDatabase, ref } from "firebase/database";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB_mQnR5dc4vKD454FSNPJBx_H3tu3qTuY",
-  authDomain: "gb-266454.firebaseapp.com",
-  projectId: "gb-266454",
-  storageBucket: "gb-266454.appspot.com",
-  messagingSenderId: "985294077444",
-  appId: "1:985294077444:web:b4a8e9b0538e37e2133f51"
+  apiKey: "AIzaSyCh93wNPBpM0oQcKr5w0kJw4xnOqNI0BLU",
+  authDomain: "gb-263811.firebaseapp.com",
+  projectId: "gb-263811",
+  storageBucket: "gb-263811.appspot.com",
+  messagingSenderId: "506726017239",
+  appId: "1:506726017239:web:260abae7bc4be6f859a892"
 };
 
 const app = initializeApp(firebaseConfig);
 
-export const firbaseAuth = getAuth(app)
+export const firebaseAuth = getAuth(app)
 
 export const signUp = async (email, password) => {
-  await createUserWithEmailAndPassword(firbaseAuth, email, password)
+  await createUserWithEmailAndPassword(firebaseAuth, email, password)
 }
 
 export const signIn = async (email, password) => {
-  await signInWithEmailAndPassword(firbaseAuth, email, password)
+  await signInWithEmailAndPassword(firebaseAuth, email, password)
 }
 
-export const logOut = async () => await signOut(firbaseAuth)
+export const logOut = async () => await signOut(firebaseAuth)
 
 const db = getDatabase(app)
 
 export const userRef = ref(db, 'user')
 export const postsRef = ref(db, 'posts')
-export const getPostById = (postID) => ref(db, `posts/${postID}`)
+export const getPostById = (postId) => ref(db, `posts/${postId}`)

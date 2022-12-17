@@ -1,11 +1,8 @@
 import React, {useState} from 'react'
-import { signUp } from '../../services/firebase'
-// import {useDispatch} from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-// import {auth} from '../../redux/actions/profileAC'
+import { signUp } from '../../services/firebase'
 
 export default function Signup() {
-  // const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const [inputs, setInputs] = useState({email: '', password: ''})
@@ -34,7 +31,7 @@ export default function Signup() {
 
   return (
    <>
-    <h1>Signup Page</h1>
+    <h1>Signin Page</h1>
     <form onSubmit={handlerForm}>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">Email</label>
@@ -61,7 +58,7 @@ export default function Signup() {
         </div>
       <button type="submit" className="btn btn-primary">Signup</button>
     </form>
-    {loading && <p>Loading....</p>}
+    {loading && <p>Loading.....</p>}
     {error && <p style={{color: 'red'}}>{error.message}</p>}
    </>
   )

@@ -1,7 +1,6 @@
-import React, {memo, useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { onValue } from "firebase/database";
-
+import React, {memo, useEffect, useState} from 'react'
+// import { useSelector } from 'react-redux'
+import { onValue} from "firebase/database";
 import { postsRef } from '../../services/firebase'
 
 import Item from '../Item/Item'
@@ -9,13 +8,10 @@ import Item from '../Item/Item'
 const List = () => {
   // const posts = useSelector(store => store.posts)
   const [posts, setPosts] = useState([])
-  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    const unsubscribe = onValue(postsRef, (snapshot) => {
-      setLoading(true)
+    onValue(postsRef, (snapshot) => {
       const data = snapshot.val()
-      console.log('data', data)
       if (data) {
         const newPosts = Object.entries(data).map((item) => ({
           id: item[0],
@@ -23,11 +19,7 @@ const List = () => {
         }))
         setPosts(newPosts)
       }
-      setLoading(false)
-
     })
-
-    return unsubscribe
   }, [])
 
   return (
@@ -39,7 +31,6 @@ const List = () => {
           )
         }
       </div>
-      {loading && <p>Loading......</p>}
     </div>
   )
 }

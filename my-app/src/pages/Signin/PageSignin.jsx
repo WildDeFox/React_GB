@@ -1,11 +1,10 @@
 import React, {useState} from 'react'
 import {useDispatch} from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-// import {auth} from '../../redux/actions/profileAC'
 import { signIn } from '../../services/firebase'
 
 export default function Signin() {
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const [inputs, setInputs] = useState({email: '', password: ''})
@@ -37,7 +36,7 @@ export default function Signin() {
     <h1>Signin Page</h1>
     <form onSubmit={handlerForm}>
         <div className="mb-3">
-          <label htmlFor="exampleInputEmail1" className="form-label">Login</label>
+          <label htmlFor="exampleInputEmail1" className="form-label">Email</label>
           <input 
             type="email" 
             className="form-control" 
@@ -61,8 +60,7 @@ export default function Signin() {
         </div>
       <button type="submit" className="btn btn-primary">Signin</button>
     </form>
-    {loading && <p>Loading....</p>}
-    {error && <p style={{color: 'red'}}>{error.message}</p>}
+    {error && <p style={{color: 'red'}}>Login or password is FALIED</p>}
    </>
   )
 }

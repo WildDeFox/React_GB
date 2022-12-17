@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Routes, Route } from "react-router-dom";
 import { useDispatch } from 'react-redux'
+import { firebaseAuth } from './services/firebase'
 
-import { firbaseAuth } from './services/firebase'
-
-import * as profileActions from './redux/actions/profileAC'
+import * as aprofileActions from './redux/actions/profileAC'
 
 import Navbar from './components/Navbar/Navbar'
 import PageHome from './pages/Home/PageHome'
@@ -16,7 +15,7 @@ import Articles from './pages/Articles/PageArticles'
 import Signin from './pages/Signin/PageSignin'
 import Signup from './pages/Signup/PageSignup'
 
-import { PrivateRoute } from './components/routes/PrivateRoute'
+import { PrivateRoutes } from './components/routes/PrivateRoutes'
 
 import './App.css';
 
@@ -24,15 +23,15 @@ function App () {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const unsubcribe = firbaseAuth.onAuthStateChanged((user) => {
+    const unsubscribe = firebaseAuth.onAuthStateChanged((user) => {
       if (user) {
-        dispatch(profileActions.auth(true))
+        dispatch(aprofileActions.auth(true))
       } else {
-        dispatch(profileActions.auth(false))
+        dispatch(aprofileActions.auth(false))
       }
     })
 
-    return unsubcribe
+    return unsubscribe
   }, [dispatch])
 
   console.log('App');
@@ -45,14 +44,16 @@ function App () {
       <section className="list App-content">
         <Routes>
           <Route path="/" element={<PageHome />} />
-          <Route path="form" element={<PagePost />} />
+          <Route path="form"
+            element={<PrivateRoutes component={<PagePost />} />}
+          />
           <Route path="posts">
             <Route path="list" element={<PageCards />} />
             <Route path=":myId" element={<PageInfo />} />
           </Route>
           <Route
             path="profile"
-            element={<PrivateRoute component={<PageProfile />} />}
+            element={<PrivateRoutes component={<PageProfile />} />}
           />
           <Route path="articles" element={<Articles />} />
           <Route path="signin" element={<Signin />} />

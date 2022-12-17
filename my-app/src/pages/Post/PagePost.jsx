@@ -14,11 +14,10 @@ export default function Post() {
 
   const handlerForm = (event) => {
     event.preventDefault()
-    // dispatch(postActions.submitPost(inputs))
-    console.log(inputs)
     push(postsRef, {
       ...inputs
     })
+    // dispatch(postActions.submitPost(inputs))
     dispatch(postActions.clearInputPost())
   }
 
